@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+
+  <ModulePrefs title="Hello Gadget"
+  description="Hello Description" 
+  author="Alan" 
+  author_email="alandeng@meijiabang.cn">
+    <Optional feature="gadget-directory">
+      <Param name="categories">JIRA</Param>
+    </Optional>
+  </ModulePrefs>
+
+  <Require feature="oauthpopup" />
+    <OAuth>
+      <Service>
+        <Access url="http://jira.mooyoo.com.cn//plugins/servlet/oauth/access-token" method="POST" />
+        <Request url="http://jira.mooyoo.com.cn//plugins/servlet/oauth/request-token" method="POST" />
+        <Authorization url="http://jira.mooyoo.com.cn//plugins/servlet/oauth/authorize?oauth_callback=http%3A%2F%2Foauth.gmodules.com%2Fgadgets%2Foauthcallback" />
+      </Service>
+    </OAuth>
+
+  <Content type="html">
+    <![CDATA[
+    Hello world!!!
+    ]]>
+  </Content>
+
+</Module>
