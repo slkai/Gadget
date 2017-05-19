@@ -11,16 +11,34 @@
   </ModulePrefs>
 
   <Content type="html">
-    <![CDATA[
+      <![CDATA[
     
-    <link rel="stylesheet"
-      href="https://raw.githubusercontent.com/slkai/Gadget/master/basic/jira-issues.css">
+        <div id='content_div'></div>
+        <script type="text/javascript">
 
-    <div id="content_div"></div>
+        function fetchIssues() {
+          var url = "http://jira.mooyoo.com.cn/rest/api/2/search?jql=assignee=currentUser()"
+          var params = {};
+          params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
+          gadgets.io.makeRequest(url, handleResponse, params);
+        }
 
-    <script type="text/javascript"
-      src="https://raw.githubusercontent.com/slkai/Gadget/master/basic/jira-issues.js"></script>
+        function handleResponse(obj) {
 
+          var jsonData = obj.data;
+          var issues = jsonData['issues'];
+          var html = ""
+
+          for (var i = 0; i < issues.length; i++) {
+              var issue = issues[i];
+              var key = issue['key'];
+              html += "<li>"+ key + "</li>";
+          }
+          document.getElementById('content_div').innerHTML = html;
+        }
+
+        gadgets.util.registerOnLoadHandler(makeJSONRequest);
+        </script>
     ]]>
   </Content>
 
