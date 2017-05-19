@@ -88,7 +88,7 @@
       // gadget as a link that the user clicks to begin the approval process.
       function fetchData() {
         var params = {};
-        url = "http://localhost:8070/rest/gadget/1.0/issueTable/jql?jql=";
+        url = "http://jira.mooyoo.com.cn/rest/gadget/1.0/issueTable/jql?jql=";
         url = url + escape("assignee = currentUser() AND resolution = unresolved ORDER BY priority DESC, created ASC");
 
         params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
