@@ -12,33 +12,25 @@
 
   <Content type="html">
       <![CDATA[
-    
-        <div id='content_div'></div>
-        <script type="text/javascript">
 
-        function fetchIssues() {
-          var url = "http://jira.mooyoo.com.cn/rest/api/2/search?jql=assignee=currentUser()"
-          var params = {};
-          params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
-          gadgets.io.makeRequest(url, handleResponse, params);
-        }
+      lalala
 
-        function handleResponse(obj) {
-
-          var jsonData = obj.data;
-          var issues = jsonData['issues'];
-          var html = ""
-
-          for (var i = 0; i < issues.length; i++) {
-              var issue = issues[i];
-              var key = issue['key'];
-              html += "<li>"+ key + "</li>";
+      <script type="text/javascript">
+          function fetchIssues() {
+            var url = "http://jira.mooyoo.com.cn/rest/api/2/search?jql=assignee=currentUser()";
+            var params = {};
+            params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
+            gadgets.io.makeRequest(url, handleResponse, params);
+            console.log("123456789");
           }
-          document.getElementById('content_div').innerHTML = html;
-        }
 
-        gadgets.util.registerOnLoadHandler(makeJSONRequest);
-        </script>
+          function handleResponse(obj) {
+            console.log("网络请求完成");
+            console.log(obj);
+          }
+
+          gadgets.util.registerOnLoadHandler(fetchIssues);
+      </script>
     ]]>
   </Content>
 
