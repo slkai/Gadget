@@ -15,6 +15,9 @@ gadgets.util.registerOnLoadHandler(fetchIssues);
 function fetchIssues() {
   // Request URL for most recently created,
   // unresolved issues on jira.atlassian.com
+  var url = "http://jira.mooyoo.com.cn/rest/agile/1.0/issue/MJB-552"
+
+  /*
   var url = "http://jira.atlassian.com/sr/" +
     "jira.issueviews:searchrequest-xml" +
     "/temp/SearchRequest.xml?" +
@@ -22,12 +25,12 @@ function fetchIssues() {
     "&sorter/field=issuekey&sorter/order=DESC" +
     "&sorter/field=created&sorter/order=DESC" +
     "&tempMax=20";
+    */
 
     // Construct request parameters object
     var params = {};
     // Indicate that the response is XML
-    params[gadgets.io.RequestParameters.CONTENT_TYPE] =
-      gadgets.io.ContentType.DOM;
+    params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
 
   // Proxy the request through the container server
   gadgets.io.makeRequest(url, handleResponse, params);

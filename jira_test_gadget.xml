@@ -10,19 +10,16 @@
     </Optional>
   </ModulePrefs>
 
-  <Require feature="oauthpopup" />
-    <OAuth>
-      <Service>
-        <Access url="http://jira.mooyoo.com.cn//plugins/servlet/oauth/access-token" method="POST" />
-        <Request url="http://jira.mooyoo.com.cn//plugins/servlet/oauth/request-token" method="POST" />
-        <Authorization url="http://jira.mooyoo.com.cn//plugins/servlet/oauth/authorize?oauth_callback=http%3A%2F%2Foauth.gmodules.com%2Fgadgets%2Foauthcallback" />
-      </Service>
-    </OAuth>
-
   <Content type="html">
     <![CDATA[
     
-    hello
+    <link rel="stylesheet"
+      href="https://raw.githubusercontent.com/slkai/Gadget/master/basic/jira-issues.css">
+
+    <div id="content_div"></div>
+
+    <script type="text/javascript"
+      src="https://raw.githubusercontent.com/slkai/Gadget/master/basic/jira-issues.js"></script>
 
     ]]>
   </Content>
