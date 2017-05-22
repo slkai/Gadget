@@ -2,18 +2,32 @@
 <Module>
 
   <ModulePrefs title="Hello Gadget"
-  description="Hello Description" 
-  author="Alan" 
-  author_email="alandeng@meijiabang.cn">
+    description="Hello Description" 
+    author="Alan" 
+    author_email="alandeng@meijiabang.cn">
     <Optional feature="gadget-directory">
       <Param name="categories">JIRA</Param>
     </Optional>
+
+    <Require feature="oauthpopup"/>
+    <OAuth>
+      <Service>
+        <Access url="http://jira.mooyoo.com.cn/plugins/servlet/oauth/access-token" method="POST"/>
+        <Request url="http://jira.mooyoo.com.cn/plugins/servlet/oauth/request-token" method="POST"/>
+        <Authorization url="http://jira.mooyoo.com.cn/plugins/servlet/oauth/authorize?oauth_callback=http%3A%2F%2Foauth.gmodules.com%2Fgadgets%2Foauthcallback"/>
+      </Service>
+    </OAuth>
+
   </ModulePrefs>
+
+
 
   <Content type="html">
       <![CDATA[
 
       lalala
+
+      <div id="content_div"></div>
 
       <script type="text/javascript">
           function fetchIssues() {
@@ -26,7 +40,10 @@
 
           function handleResponse(obj) {
             console.log("网络请求完成");
-            console.log(obj);
+            console.log(obj.data);
+
+            var html = "<li>网络请求完成</li>";
+            document.getElementById('content_div').innerHTML = html;
           }
 
           gadgets.util.registerOnLoadHandler(fetchIssues);
